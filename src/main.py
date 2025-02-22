@@ -1,9 +1,17 @@
- 
 from face_detection import detect_face_expressions
 from voice_recognition import recognize_voice_commands
 from intent_recognition import recognize_intent
 from action_execution import perform_action
 import time
+
+def map_intent_to_action(intent):
+    """ Maps recognized intent to an action """
+    intent_map = {
+        "open_app": "open_app",
+        "scroll_up": "scroll_up",
+        "terminate": "terminate"
+    }
+    return intent_map.get(intent, "unknown")
 
 def start_interaction():
     print("System Ready! Please interact with the system.")
@@ -27,20 +35,10 @@ def start_interaction():
 
         # Check for session termination
         if action == "terminate":
+            print("Terminating interaction...")
             break
 
         time.sleep(1)  # Delay to simulate real-time processing
 
-def map_intent_to_action(intent):
-    # Example mapping
-    if intent == "open_app":
-        return "open_app"
-    elif intent == "scroll_up":
-        return "scroll_up"
-    elif intent == "terminate":
-        return "terminate"
-    else:
-        return "unknown"
-
-if __name__ == "_main_":
+if __name__ == "__main__":
     start_interaction()
